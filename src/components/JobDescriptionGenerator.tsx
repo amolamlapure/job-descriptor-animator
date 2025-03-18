@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { StepIndicator } from "@/components/StepIndicator";
@@ -46,7 +45,6 @@ export const JobDescriptionGenerator = () => {
         generateDescription();
       }
       
-      // Small delay to allow animation to complete
       setTimeout(() => {
         setCurrentStep(currentStep + 1);
         setAnimatingStep(currentStep + 1);
@@ -58,7 +56,6 @@ export const JobDescriptionGenerator = () => {
     if (currentStep > 1) {
       setAnimationDirection("backward");
       
-      // Small delay to allow animation to complete
       setTimeout(() => {
         setCurrentStep(currentStep - 1);
         setAnimatingStep(currentStep - 1);
@@ -141,6 +138,7 @@ export const JobDescriptionGenerator = () => {
           onPrevious={handlePrevious}
           isNextDisabled={isNextDisabled(currentStep)}
           isPreviousHidden={currentStep === 1}
+          nextLabel={currentStep === 4 ? "Generate" : "Next"}
         />
       </Card>
     </div>
