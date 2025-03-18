@@ -1,9 +1,7 @@
-
 import React from "react";
 import { useJobForm } from "@/context/JobFormContext";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 
 export const CompanyInfoStep = () => {
   const { formData, updateCompanyInfo } = useJobForm();
@@ -47,16 +45,7 @@ export const CompanyInfoStep = () => {
           />
         </div>
         
-        <div className="space-y-2">
-          <Label htmlFor="companyAbout">About the Company</Label>
-          <Textarea
-            id="companyAbout"
-            placeholder="A brief description of your company, mission, and culture."
-            value={formData.companyInfo.about}
-            onChange={handleChange("about")}
-            className="min-h-[150px] resize-none transition-all duration-200 focus-within:ring focus-within:ring-primary/20"
-          />
-        </div>
+        {/* About Company text area has been hidden */}
       </div>
     </div>
   );

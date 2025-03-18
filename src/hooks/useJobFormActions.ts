@@ -16,6 +16,13 @@ export function useJobFormActions(
     }));
   }, [setFormData]);
 
+  const updateExperienceRange = useCallback((experience: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      experienceRange: experience,
+    }));
+  }, [setFormData]);
+
   const updateSuggestedSkills = useCallback((title: string) => {
     const normalizedTitle = title.trim();
     
@@ -88,21 +95,40 @@ export function useJobFormActions(
     // Simulate description generation
     setTimeout(() => {
       const jobTitle = formData.jobTitle;
+      const experienceLevel = formData.experienceRange;
       const company = formData.companyInfo.name;
       const location = formData.companyInfo.location;
       const companyAbout = formData.companyInfo.about;
       const skills = formData.selectedSkills.map(s => s.name).join(", ");
       const additionalInfo = formData.additionalInfo;
       
+      let experienceText = "";
+      switch (experienceLevel) {
+        case "entry":
+          experienceText = "0-2 years";
+          break;
+        case "mid":
+          experienceText = "3-5 years";
+          break;
+        case "senior":
+          experienceText = "5-8 years";
+          break;
+        case "expert":
+          experienceText = "8+ years";
+          break;
+        default:
+          experienceText = "";
+      }
+      
       const generatedDescription = `
 # ${jobTitle} at ${company}
-## ${location}
+## ${location}${experienceText ? ` | ${experienceText} Experience` : ''}
 
 ### About ${company}
-${companyAbout}
+${companyAbout || "We are a dynamic company looking for talented individuals to join our team."}
 
 ### The Role
-We are seeking an experienced ${jobTitle} to join our growing team. The ideal candidate will have a strong background in ${skills}.
+We are seeking an experienced ${jobTitle} to join our growing team. The ideal candidate will have ${experienceText ? `${experienceText} of experience` : 'relevant experience'} in ${skills}.
 
 ### Responsibilities
 - Design, develop, and maintain high-quality applications
@@ -126,6 +152,7 @@ Please send your resume and cover letter to careers@${company.toLowerCase().repl
 
   return {
     updateJobTitle,
+    updateExperienceRange,
     updateSuggestedSkills,
     toggleSkill,
     updateAdditionalInfo,

@@ -3,9 +3,10 @@ import React, { useEffect } from "react";
 import { useJobForm } from "@/context/JobFormContext";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export const JobTitleStep = () => {
-  const { formData, updateJobTitle } = useJobForm();
+  const { formData, updateJobTitle, updateExperienceRange } = useJobForm();
   const [value, setValue] = React.useState(formData.jobTitle);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +26,7 @@ export const JobTitleStep = () => {
       <div className="space-y-2">
         <h2 className="text-2xl font-medium tracking-tight">What job are you hiring for?</h2>
         <p className="text-muted-foreground">
-          Enter the job title to get started. We'll suggest relevant skills based on this title.
+          Enter the job title and required experience to get started.
         </p>
       </div>
       
@@ -39,6 +40,24 @@ export const JobTitleStep = () => {
             onChange={handleChange}
             className="w-full transition-all duration-200 focus-within:ring focus-within:ring-primary/20 text-lg"
           />
+        </div>
+        
+        <div className="space-y-2">
+          <Label htmlFor="experienceRange">Experience Level</Label>
+          <Select 
+            value={formData.experienceRange} 
+            onValueChange={updateExperienceRange}
+          >
+            <SelectTrigger id="experienceRange" className="w-full transition-all duration-200 focus-within:ring focus-within:ring-primary/20">
+              <SelectValue placeholder="Select required experience" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="entry">Entry Level (0-2 years)</SelectItem>
+              <SelectItem value="mid">Mid Level (3-5 years)</SelectItem>
+              <SelectItem value="senior">Senior Level (5-8 years)</SelectItem>
+              <SelectItem value="expert">Expert Level (8+ years)</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         
         <div className="pt-4">

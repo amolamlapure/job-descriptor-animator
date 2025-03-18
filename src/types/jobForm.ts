@@ -7,6 +7,7 @@ export type Skill = {
 
 export type JobFormData = {
   jobTitle: string;
+  experienceRange: string;
   selectedSkills: Skill[];
   suggestedSkills: Skill[];
   additionalInfo: string;
@@ -19,6 +20,7 @@ export type JobFormData = {
 
 export const initialFormData: JobFormData = {
   jobTitle: "",
+  experienceRange: "",
   selectedSkills: [],
   suggestedSkills: [],
   additionalInfo: "",

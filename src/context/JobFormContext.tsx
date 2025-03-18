@@ -10,6 +10,7 @@ interface JobFormContextType {
   isGenerating: boolean;
   setCurrentStep: (step: number) => void;
   updateJobTitle: (title: string) => void;
+  updateExperienceRange: (experience: string) => void;
   updateSuggestedSkills: (title: string) => void;
   toggleSkill: (skillId: string) => void;
   updateAdditionalInfo: (info: string) => void;
@@ -39,6 +40,7 @@ export const JobFormProvider = ({ children }: JobFormProviderProps) => {
 
   const {
     updateJobTitle,
+    updateExperienceRange,
     updateSuggestedSkills,
     toggleSkill,
     updateAdditionalInfo,
@@ -53,6 +55,7 @@ export const JobFormProvider = ({ children }: JobFormProviderProps) => {
     isGenerating,
     setCurrentStep,
     updateJobTitle,
+    updateExperienceRange,
     updateSuggestedSkills,
     toggleSkill,
     updateAdditionalInfo,
